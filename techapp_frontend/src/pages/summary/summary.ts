@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PssApiProvider } from '../../providers/pss-api/pss-api';
