@@ -14,31 +14,15 @@
 
 
 <ion-content>
-  <div *ngIf="loggedIn==true && mode=='backup'">
-    <ion-list radio-group [(ngModel)]="backupMachineEra">
-      <ion-list-header>
-        Select Backup Machine Era
-      </ion-list-header>    
-      <ion-item *ngFor='let era of [{eraId:1,eraName:"DMD"},{eraId:2,eraName:"Early Solid State"},{eraId:3,eraName:"Late Solid State"},{eraId:4,eraName:"EM"}]'>
-        <ion-label>{{era.eraName}}</ion-label>
-        <ion-radio value="{{era.eraId}}"></ion-radio>
-      </ion-item>        
-    </ion-list>
-    <button ion-button (click)="selectbackupMachine(backupMachineEra)" [disabled]="backupMachineEra==null"> Select Backup Machine</button>
-  </div>
-  <div  *ngIf="loggedIn==true && mode=='tech'">
   <ion-searchbar placeholder="Enter Machine 4 Digit Code" (ionInput)="machineLookup($event)"></ion-searchbar>    
   <div text-center *ngIf="currentMachine!=null">  
     <h1><b>{{currentMachine.machine_name}}</b></h1>
     <b margin-bottom><a (click)="openMachineLocationDialog()">{{currentMachine.machine_location}}</a></b>
     <ion-list margin-top >
-      <button ion-item detail-none (click)="openProblemDialog()">
-        Report New Problem
+      <button ion-item detail-none (click)="submitEckProblem()">
+        Machine has a problem
         <ion-icon item-end name="add-circle-outline"></ion-icon>        
       </button>      
-      <button ion-item  [color]="problem.resolved==true?'secondary':'danger'" [navPush]="'ProblemEditPage'" [navParams]="{problemType:problem,live:true}" *ngFor="let problem of currentMachine.problems">
-        {{problem.problem_type}}
-      </button>
     </ion-list>    
   </div>
   <ion-list>
@@ -46,22 +30,4 @@
       {{machine.machine_name}}
     </button>
   </ion-list>
-  </div>
-  <ion-fab bottom right #fab>
-    <button color="primary" ion-fab>
-      <ion-icon name="cog" ></ion-icon>
-    </button>
-    <ion-fab-list side="top">   
-      <button ion-fab [navPush]="'SummaryPage'"><ion-icon name="apps"></ion-icon></button>
-      <button ion-fab (click)="switchMode('backup', fab)"><ion-icon name="walk"></ion-icon></button>
-      <button ion-fab (click)="switchMode('tech', fab)"><ion-icon name="build"></ion-icon></button>
-      <button color="secondary"  ion-fab (click)="login(fab)" *ngIf="loggedIn==false">
-        <ion-icon name="person"></ion-icon>
-      </button>
-      <button color="danger"  ion-fab (click)="logout(fab)" *ngIf="loggedIn==true">
-        <ion-icon name="person"></ion-icon>
-      </button>          
-      
-    </ion-fab-list>
-  </ion-fab>
 </ion-content>

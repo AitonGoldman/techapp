@@ -190,4 +190,12 @@ export class HomePage {
         alert.present();
     }
     
+    submitEckProblem(){
+        let eckUserId: any = this.auth.getUsersList()[0]['user_id']
+        let problem: ProblemModel = new ProblemModelBuilder().setProblemType("EckProblem").setMachineId(this.currentMachine.machine_id).setUserId(eckUserId).build()
+        this.pssApi.addProblem(problem).subscribe((result)=>{
+            this.currentMachine.problems.unshift(problem);
+        })
+    }
+    
 }
