@@ -34,5 +34,8 @@ export class SummaryPage {
             }            
             this.problems = result.body.data;
         })
-    }    
+    }
+    openMachinePage(machine_id) {
+        this.navCtrl.push('HomePage',{machineId:machine_id})
+    }
 }

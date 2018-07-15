@@ -22,9 +22,10 @@
     <ion-row>
       <ng-container *ngFor="let problem of problems">
         <ion-col col-12 col-sm col-lg-3 *ngIf="problem.resolved==false">      
-          <ion-card>
+          <ion-card (click)="openMachinePage(problem.machine_id)">
             <ion-card-header>
               {{machinesInfo.getMachine(problem.machine_id).machine_name}}
+              ({{machinesInfo.getMachine(problem.machine_id).machine_four_digit_id}})              
               <hr>
               {{machinesInfo.getMachine(problem.machine_id).machine_location}}
             </ion-card-header>
