@@ -19,10 +19,13 @@
     <h1><b>{{currentMachine.machine_name}}</b></h1>
     <b margin-bottom><a (click)="openMachineLocationDialog()">{{currentMachine.machine_location}}</a></b>
     <ion-list margin-top >
-      <button ion-item detail-none (click)="submitEckProblem()">
+      <button ion-item detail-none (click)="submitEckProblem()" *ngIf="problemAdded==false">
         Machine has a problem
         <ion-icon item-end name="add-circle-outline"></ion-icon>        
-      </button>      
+      </button>
+      <ion-item *ngIf="problemAdded==true">
+        Problem submitted.  Please enter another machine number.
+      </ion-item>
     </ion-list>    
   </div>
   <ion-list>

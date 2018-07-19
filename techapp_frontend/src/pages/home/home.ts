@@ -31,6 +31,7 @@ export class HomePage {
     mode:string = "tech";
     backupMachineEra: number = null;
     currentMachine: any = null;
+    problemAdded:any = false;
     
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
@@ -94,6 +95,7 @@ export class HomePage {
 
     machineLookup(ev: any){
         this.currentMachine=null;
+        this.problemAdded = false;        
         const val = Number(ev.target.value);        
         if (val > 999 && val < 10000) {
             this.filteredMachines = this.machines.filter((item) => {                
@@ -201,6 +203,7 @@ export class HomePage {
         let problem: ProblemModel = new ProblemModelBuilder().setProblemType("EckProblem").setMachineId(this.currentMachine.machine_id).setUserId(eckUserId).build()
         this.pssApi.addProblem(problem).subscribe((result)=>{
             this.currentMachine.problems.unshift(problem);
+            this.problemAdded = true;
         })
     }
     
