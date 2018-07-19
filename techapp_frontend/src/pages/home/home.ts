@@ -47,6 +47,9 @@ export class HomePage {
     
     ionViewDidLoad() {
         console.log('ionViewDidLoad HomePage');
+        this.auth.login({'user_id':1,'username':'eck'});
+        this.loggedIn=this.auth.isLoggedIn();
+
         this.loggedIn=this.auth.isLoggedIn();
         if(this.navParams.get('mode')=='backup'){
             this.mode='backup';
