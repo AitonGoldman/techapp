@@ -19,7 +19,7 @@ db_url="postgresql://%s:%s@localhost/%s" % (db_username,db_password,db_name)
 
 flask_app = Flask('dummy')
 flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_url
-
+flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
 if database_exists(db_url):        
     sql_utils_drop_database(db_url)
