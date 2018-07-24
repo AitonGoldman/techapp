@@ -44,6 +44,6 @@ def edit_problem_route():
 
 @techapp_event_bp.route('/problem_types', methods=["GET"])
 def get_problem_types():
-    problem_types=["stuck ball","flipper failure","flipper stuck","flipper weak","machine gun slingshot","scoop problem","saucer problem","awarding inappropriate X", "not awarding X", "machine resets","other"]
+    problem_types=["stuck ball","flipper stops working","flipper stuck","flipper chattering","flipper weak", "game ends in middle of ball", "2 balls popped into shooter lane", "switch registering incorrectly","switch not registering","other"]
     return jsonify({'data':problem_types,
                     'status':'success'})

@@ -32,12 +32,15 @@ class ProblemOperations():
         for field in ["problem_type","user_id"]:
             if field not in problem_info:
                 return None
-            setattr(new_problem,field,problem_info[field])            
-            if field == "stuck ball":
-                setattr(new_problem,"resolved",True)
+            setattr(new_problem,field,problem_info[field])
+        print problem_info
         for field in ["resolved","description"]:
             if field in problem_info:                
                 setattr(new_problem,field,problem_info[field])                
+        
+        if problem_info['problem_type']=='stuck ball':
+            setattr(new_problem,"resolved",True)
+            
         self.tableProxy.sqlAlchemyHandle.session.add(new_problem)
         machine.problems.append(new_problem)
         if commit:

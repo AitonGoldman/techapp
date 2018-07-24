@@ -39,7 +39,12 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////%s/test.db' % app.instance_path
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////%s/test.db' % app.instance_path
+    db_username=os.environ['db_username']
+    db_password=os.environ['db_password']
+    db_name='techapp'
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://%s:%s@localhost/%s" % (db_username,db_password,db_name)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     CORS(
         app,
