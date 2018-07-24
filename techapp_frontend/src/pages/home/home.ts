@@ -117,6 +117,7 @@ export class HomePage {
                 let problem: ProblemModel = new ProblemModelBuilder().setProblemType(data).setMachineId(this.currentMachine.machine_id).setUserId(this.auth.getUserId()).build()
                 this.pssApi.addProblem(problem).subscribe((result: HttpResponse<any>)=>{                    
                     problem.problem_id=result.body.data.problem_id
+                    problem.resolved = result.body.data.resolved
                     console.log(problem);
                     //problem.problem_id = result.body.data.problem_id;
                     this.currentMachine.problems.unshift(problem);
